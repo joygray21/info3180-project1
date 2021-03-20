@@ -1,4 +1,53 @@
 {% extends "base.html" %}
 
 {% block main %}
+    <div class="login-form center-block">
+        <form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
+            {{ newPropertyForm.csrf_token }}
+
+            <div class="form-group">
+                {{ newPropertyForm.pTitle.label}}
+                {{ newPropertyForm.pTitle(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.pDesc.label }}
+                {{ newPropertyForm.pDesc(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.noOfRooms.label }}
+                {{ newPropertyForm.noOfRooms(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.noOfBathrooms.label }}
+                {{ newPropertyForm.noOfBathrooms(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.price.label }}
+                {{ newPropertyForm.price(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.pType.label }}
+                {{ newPropertyForm.pType(class='form-control') }}                
+            </div>
+            <div class="form-group">
+                {{ newPropertyForm.pLoc.label }}
+                {{ newPropertyForm.pLoc(class='form-control') }}
+            </div>
+            <div class="form-group">
+                <!-- {{ newPropertyForm.photo.label }} -->
+                <label class="btn btn-default input-group-addon" for="photo">
+                    {{ newPropertyForm.photo(id="photo") }}
+                    Browse
+                </label>
+                <!-- {{ newPropertyForm.photo(class='form-control') }} -->
+                <input type="text" class="form-control"> 
+                
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary">Add Property</button>
+
+        </form>
+
+
+    </div>
 {% endblock %}

@@ -7,6 +7,7 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
+from app.forms import newPropertyForm
 
 
 ###
@@ -22,19 +23,34 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html')
 
 @app.route('/property')
 def property():
-    pass
+    #create a new property
+
+    #Instantiate form class
+    newProp = newPropertyForm()
+
+    #Validate form in submit
+    if request.method == 'POST' and newProp.validate_on_submit():
+        #
+        #
+
+        return redirect(url_for('home'))
+
+    return render_template('newProperty.html', newPropertyForm=newProp)
 
 @app.route('/properties')
 def properties():
-    pass
+    #show all properties
+    return render_template('properties.html')
 
 @app.route('/property/<propertyid>')
-def indivProperty():
+def indivProperty(propertyID):
+    #show property matching ID provided
     pass
+
 ###
 # The functions below should be applicable to all Flask apps.
 ###
