@@ -25,7 +25,7 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
-@app.route('/property')
+@app.route('/property', methods=['POST', 'GET'])
 def property():
     #create a new property
 
