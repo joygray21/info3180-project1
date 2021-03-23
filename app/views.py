@@ -5,8 +5,12 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import os
 from app import app
-from flask import render_template, request, redirect, url_for
+from app import db
+from app.models import PropertyInfo
+from flask import render_template, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
 from app.forms import newPropertyForm
 
 
@@ -34,8 +38,22 @@ def property():
 
     #Validate form in submit
     if request.method == 'POST' and newProp.validate_on_submit():
-        #
-        #
+        #Get photo file name | Save photo to propertyPhotos folder
+        propPhoto = newProp.photo.data 
+        photoFilename = secure_filename(propPhoto.filename)
+
+        propPhoto.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], photoFilename
+        ))
+
+        #Get form data and save it to database
+        prop = PropertyInfo(request.form['title'], request.form['numberOfBedrooms'], request.form['numberOfBathrooms'], 
+                    request.form['location'], int((request.form['price']).replace(',','')), request.form['pType'], request.form['description'], 
+                    photoFilename)
+
+        db.session.add(prop)
+        db.session.commit()
+        flash('New property successfully added')
 
         return redirect(url_for('home'))
 
