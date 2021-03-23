@@ -22,6 +22,7 @@ class PropertyInfo(db.Model):
         self.price = price
         self.ptype = ptype
         self.description = description
+        self.photoFilename = photoFilename
 
     def __repr__(self):
         return '<Property Title: %r>' % self.title

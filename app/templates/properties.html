@@ -1,4 +1,16 @@
 {% extends "base.html" %}
 
 {% block main %}
+<h1>Properties</h1>
+
+<div class='propContainer'>
+    {% for prop in propertiesInfo %}
+        <p> <img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"> </p>
+        <p> {{ prop.photoFilename }} </p>
+        <p>{{ prop.title }}</p>
+        <p>{{ prop.location }}</p>
+        <p>{{ prop.price }}</p>
+        <button></button>
+    {% endfor %}
+</div>
 {% endblock %}

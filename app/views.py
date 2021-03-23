@@ -9,7 +9,7 @@ import os
 from app import app
 from app import db
 from app.models import PropertyInfo
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from app.forms import newPropertyForm
 
@@ -40,29 +40,44 @@ def property():
     if request.method == 'POST' and newProp.validate_on_submit():
         #Get photo file name | Save photo to propertyPhotos folder
         propPhoto = newProp.photo.data 
-        photoFilename = secure_filename(propPhoto.filename)
+        filename = secure_filename(propPhoto.filename)
 
         propPhoto.save(os.path.join(
-            app.config['UPLOAD_FOLDER'], photoFilename
+            app.config['UPLOAD_FOLDER'], filename
         ))
 
         #Get form data and save it to database
-        prop = PropertyInfo(request.form['title'], request.form['numberOfBedrooms'], request.form['numberOfBathrooms'], 
-                    request.form['location'], int((request.form['price']).replace(',','')), request.form['pType'], request.form['description'], 
-                    photoFilename)
+        prop = PropertyInfo(title=request.form['title'], numberOfBedrooms=request.form['numberOfBedrooms'], numberOfBathrooms=request.form['numberOfBathrooms'], 
+                    location=request.form['location'], price=(int((request.form['price']).replace(',',''))), ptype=request.form['pType'], description=request.form['description'], 
+                    photoFilename=filename)
 
         db.session.add(prop)
         db.session.commit()
         flash('New property successfully added')
 
-        return redirect(url_for('home'))
+        #Get all the properties and pass them to the Properties page
+        # propertiesInfo = get_properties_info()
+
+        return redirect(url_for('properties'))
 
     return render_template('newProperty.html', newPropertyForm=newProp)
+
+@app.route('/propPhotos/<filename>')
+def getPropPhoto(filename):
+    rootDir = os.getcwd()
+    print("here " + filename)
+    return send_from_directory(os.path.join(rootDir, app.config['UPLOAD_FOLDER']), filename)
+    
 
 @app.route('/properties')
 def properties():
     #show all properties
-    return render_template('properties.html')
+
+    #Get all the properties and pass them to the Properties page
+    # propertiesInfo = get_properties_info()
+    propertiesInfo = db.session.query(PropertyInfo).all()
+
+    return render_template('properties.html', propertiesInfo=propertiesInfo)
 
 @app.route('/property/<propertyid>')
 def indivProperty(propertyID):
