@@ -6,11 +6,11 @@
 <div class='propContainer'>
     {% for prop in propertiesInfo %}
         <p> <img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"> </p>
-        <p> {{ prop.photoFilename }} </p>
+        <!-- <p> {{ prop.photoFilename }} </p> -->
         <p>{{ prop.title }}</p>
         <p>{{ prop.location }}</p>
         <p>{{ prop.price }}</p>
-        <button></button>
+        <p><a href="{{ url_for('indivProperty', propertyid=prop.id) }}"><button>View Property</button></a></p>
     {% endfor %}
 </div>
 {% endblock %}

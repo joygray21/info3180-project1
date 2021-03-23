@@ -80,9 +80,9 @@ def properties():
     return render_template('properties.html', propertiesInfo=propertiesInfo)
 
 @app.route('/property/<propertyid>')
-def indivProperty(propertyID):
+def indivProperty(propertyid):
     #show property matching ID provided
-    pass
+    return render_template('indivProperty.html', propertyid=propertyid)
 
 ###
 # The functions below should be applicable to all Flask apps.
