@@ -1,4 +1,17 @@
 {% extends "base.html" %}
 
 {% block main %}
+    {% if prop %}
+        <div>
+            <p><img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"></p>
+            <p>{{ prop.title }}</p>
+            <p>{{ prop.description }}</p>
+            <p>{{ prop.numberOfBedrooms }}</p>
+            <p>{{ prop.numberOfBathrooms }}</p>
+            <p>{{ prop.location }}</p>
+            <p>{{ prop.price }}</p>
+            <p>{{ prop.ptype }}</p>
+            <p><button>Email Realtor</button></p>
+        </div>
+    {% endif %}
 {% endblock %}

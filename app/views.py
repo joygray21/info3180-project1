@@ -8,7 +8,7 @@ This file creates your application.
 import os
 from app import app
 from app import db
-from app.models import PropertyInfo
+from app.models import Property
 from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from app.forms import newPropertyForm
@@ -47,7 +47,7 @@ def property():
         ))
 
         #Get form data and save it to database
-        prop = PropertyInfo(title=request.form['title'], numberOfBedrooms=request.form['numberOfBedrooms'], numberOfBathrooms=request.form['numberOfBathrooms'], 
+        prop = Property(title=request.form['title'], numberOfBedrooms=request.form['numberOfBedrooms'], numberOfBathrooms=request.form['numberOfBathrooms'], 
                     location=request.form['location'], price=(int((request.form['price']).replace(',',''))), ptype=request.form['pType'], description=request.form['description'], 
                     photoFilename=filename)
 
@@ -75,14 +75,16 @@ def properties():
 
     #Get all the properties and pass them to the Properties page
     # propertiesInfo = get_properties_info()
-    propertiesInfo = db.session.query(PropertyInfo).all()
+    propertiesInfo = db.session.query(Property).all()
 
     return render_template('properties.html', propertiesInfo=propertiesInfo)
 
 @app.route('/property/<propertyid>')
 def indivProperty(propertyid):
     #show property matching ID provided
-    return render_template('indivProperty.html', propertyid=propertyid)
+    prop = Property.query.get(propertyid)
+
+    return render_template('indivProperty.html', prop=prop)
 
 ###
 # The functions below should be applicable to all Flask apps.
