@@ -66,3 +66,62 @@ img{
     padding: 10px;   
     text-align: center;
 }
+
+#indivProp{
+    /* margin: 0 auto; */
+    display: flex;
+    justify-content: center;
+}
+
+#indivPropDetails{
+    padding: 15px;
+}
+
+#p-photo{
+    /* float: left; */
+    height: 350px;
+    padding: 15px;
+}
+
+/* #priceANDtype{
+    display: inline;
+} */
+
+#p-price{
+    /* float:left; */
+    border-radius: 15px;
+    background-color: blue;
+    padding: 5px;   
+    /* margin-left: 10px; */
+    max-width:max-content;
+    color: white;
+    font-size: 12px;
+    display: inline;
+}
+
+#p-type{
+    border-radius: 15px;
+    background-color: orange;
+    padding: 5px;   
+    /* margin-left: 10px; */
+    max-width:max-content;
+    color: white;
+    font-size: 12px;
+    /* clear:left; */
+    display: inline;
+}
+
+#emailRealtorBtn{
+    background-color: rgb(11, 141, 113);
+    color: white;
+    padding: 10px;   
+    text-align: center;
+}
+
+#p-bedrooms{
+    display: inline;
+}
+
+#p-bathrooms{
+    display: inline;
+}

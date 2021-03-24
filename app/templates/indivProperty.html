@@ -2,16 +2,38 @@
 
 {% block main %}
     {% if prop %}
-        <div>
-            <p><img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"></p>
-            <p>{{ prop.title }}</p>
-            <p>{{ prop.description }}</p>
-            <p>{{ prop.numberOfBedrooms }}</p>
-            <p>{{ prop.numberOfBathrooms }}</p>
-            <p>{{ prop.location }}</p>
-            <p>{{ prop.price }}</p>
-            <p>{{ prop.ptype }}</p>
-            <p><button>Email Realtor</button></p>
+        <div id="indivProp">
+            <img id="p-photo" src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}">
+            
+            <div id="indivPropDetails">
+                <div>
+                    <p>{{ prop.title }}</p>
+                </div>
+
+                <div id="priceANDtype">
+                    <div id="p-price">{{ prop.price }}</div>
+                    <div id="p-type">{{ prop.ptype }}</div>
+                </div>
+
+                <div>
+                    <p>{{ prop.description }}</p>
+                </div>
+
+                <div> 
+                    <div id="p-bedrooms">{{ prop.numberOfBedrooms }}</div>
+                    <div id="p-bathrooms">{{ prop.numberOfBathrooms }}</div>
+                </div>
+
+                <div>
+                    <p>{{ prop.location }}</p>
+                </div>
+
+                <div>
+                    <button id="emailRealtorBtn">Email Realtor</button>
+                </div>
+
+            </div>
+
         </div>
     {% endif %}
 {% endblock %}
