@@ -14,16 +14,18 @@
                     <div id="p-price">{{ prop.price }}</div>
                     <div id="p-type">{{ prop.ptype }}</div>
                 </div>
+                <br>
 
                 <div>
                     <p>{{ prop.description }}</p>
                 </div>
 
                 <div> 
-                    <div id="p-bedrooms">{{ prop.numberOfBedrooms }}</div>
-                    <div id="p-bathrooms">{{ prop.numberOfBathrooms }}</div>
+                    <p id="p-bedrooms"><img id="bedIcon" src="{{ url_for('static', filename='bedIcon.png') }}"/>{{ prop.numberOfBedrooms }}</p>
+                    <p id="p-bathrooms"><img id="bathIcon" src="{{ url_for('static', filename='bathIcon.png') }}"/>{{ prop.numberOfBathrooms }}</p>
                 </div>
-
+                <br>
+                
                 <div>
                     <p><img id="locIcon" src="{{ url_for('static', filename='locationIcon.png') }}"/> {{ prop.location }}</p>
                 </div>
