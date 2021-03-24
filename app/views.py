@@ -48,7 +48,10 @@ def property():
 
         #Get form data and save it to database
         prop = Property(title=request.form['title'], numberOfBedrooms=request.form['numberOfBedrooms'], numberOfBathrooms=request.form['numberOfBathrooms'], 
-                    location=request.form['location'], price=(int((request.form['price']).replace(',',''))), ptype=request.form['pType'], description=request.form['description'], 
+                    location=request.form['location'], 
+                    price=(int((request.form['price']).replace(',',''))), 
+                    # price=request.form['price'],
+                    ptype=request.form['pType'], description=request.form['description'], 
                     photoFilename=filename)
 
         db.session.add(prop)

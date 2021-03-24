@@ -2,10 +2,12 @@
 
 {% block main %}
 <h1>Properties</h1>
+{% include "flash_messages.html" %}
 
-<div class='propContainer'>
+<!-- <div class='propContainer'> -->
+<div class="card-deck">
     {% for prop in propertiesInfo %}
-        <div class = "propItem">
+        <div class = "card">
 
             <img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"> 
             <br>
