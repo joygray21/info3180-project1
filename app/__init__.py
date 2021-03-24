@@ -4,7 +4,9 @@ from .config import Config
 
 app = Flask(__name__)
 
+app.config.from_object(Config)
+
 db = SQLAlchemy(app) #connect to db
 
-app.config.from_object(Config)
+
 from app import views, models
