@@ -4,36 +4,41 @@
 <h1>Properties</h1>
 {% include "flash_messages.html" %}
 
-<!-- <div class='propContainer'> -->
-<div class="card-deck">
-    {% for prop in propertiesInfo %}
-        <div class = "card">
+{% if propertiesInfo %}
+    <!-- <div class='propContainer'> -->
+    <div class="card-deck">
+        {% for prop in propertiesInfo %}
+            <div class = "card">
 
-            <img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"> 
-            <br>
+                <img src="{{ url_for('getPropPhoto', filename=prop.photoFilename) }}"> 
+                <br>
 
-            <div id= "ps-title">
-                {{ prop.title }}
-            </div>
-           
-            <div id="ps-location">
-                {{ prop.location }}
-            </div>
-            <br>
-
-            <div id="ps-price">
-                {{ prop.price }}
-            </div>
-            <br>
-
-            <a id="viewPropLink" href="{{ url_for('indivProperty', propertyid=prop.id) }}">
-                View Property
-            </a>
+                <div id= "ps-title">
+                    {{ prop.title }}
+                </div>
             
+                <div id="ps-location">
+                    <p><img id="locIcon" src="{{ url_for('static', filename='locationIcon.png') }}"/>{{ prop.location }}</p>
+                </div>
+                <br>
 
-        </div>
-    {% endfor %}
-</div>
+                <div id="ps-price">
+                    {{ prop.price }}
+                </div>
+                <br>
+
+                <a id="viewPropLink" href="{{ url_for('indivProperty', propertyid=prop.id) }}">
+                    View Property
+                </a>
+                
+
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No properties to display.</p>
+{% endif %}
+
 {% endblock %}
 
 

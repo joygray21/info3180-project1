@@ -125,3 +125,8 @@ img{
 #p-bathrooms{
     display: inline;
 }
+
+#locIcon{
+    height: 15px;
+    width: 15px;
+}
