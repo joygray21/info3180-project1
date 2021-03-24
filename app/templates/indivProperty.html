@@ -11,7 +11,7 @@
                 </div>
 
                 <div id="priceANDtype">
-                    <div id="p-price">{{ prop.price }}</div>
+                    <div id="p-price">${{ prop.price }}</div>
                     <div id="p-type">{{ prop.ptype }}</div>
                 </div>
                 <br>
@@ -25,7 +25,7 @@
                     <p id="p-bathrooms"><img id="bathIcon" src="{{ url_for('static', filename='bathIcon.png') }}"/>{{ prop.numberOfBathrooms }}</p>
                 </div>
                 <br>
-                
+
                 <div>
                     <p><img id="locIcon" src="{{ url_for('static', filename='locationIcon.png') }}"/> {{ prop.location }}</p>
                 </div>
